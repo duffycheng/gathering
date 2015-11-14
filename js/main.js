@@ -64,6 +64,12 @@ GatheringApp.service('MapService', function (HelperFactory) {
 				angular.forEach(that.map.markers, function(marker, m_idx) {
 					if(HelperFactory.compareLocation(marker, checkin)) {
 						marker.friends.push(user);
+						marker.icon = {
+							iconUrl: 'images/pin_red.png',
+							iconSize: [25, 41],
+							iconAnchor: [12.5, 41],
+							popupAnchor:  [0, -41]
+						},
 						console.log('Y');
 					}
 					else {
@@ -81,6 +87,12 @@ GatheringApp.service('MapService', function (HelperFactory) {
 			that.map.markers[index] = {
 				lat : parseFloat(data.lat),
 				lng : parseFloat(data.lng),
+				icon : {
+					iconUrl: 'images/pin_blue.png',
+					iconSize: [25, 41],
+					iconAnchor: [12.5, 41],
+					popupAnchor:  [0, -41]
+				},
 				friends : [],
 				message : '<popup index="'+ index +'"></popup>'
 			};
