@@ -20,8 +20,8 @@
 	<script>
 		window.GATHERING_DATA = {};
 	</script>
-	<script src="data/gym.js"></script>
-	<script src="data/user1.js"></script>
+	<script src="data/categories.js"></script>
+	<script src="data/users.js"></script>
 
   </head>
   <body>
@@ -38,6 +38,7 @@
       		<select class="form-control"
 	        	ng-options="category.name for category in mc.categories track by category.id"
 	        	ng-model="mc.category"
+	        	ng-change="mc.updateMap(mc.category.name)"
 	        	>
 	        	<option value=""> - Select Category</option>
 	        </select>

@@ -6,7 +6,27 @@ GatheringApp.config(function($interpolateProvider, $logProvider) {
     $logProvider.debugEnabled(false);
 });
 
-GatheringApp.service('MapService', function() {
+GatheringApp.factory('HelperFactory', function() {
+	return {
+		getParsedCheckInData: function (origin_checkin_list) {
+			var dataArr = origin_checkin_list.data, restructureArr=[];
+	        dataArr.forEach(function(value){
+	          var tempData = {};
+	          tempData.lat = value.place.location.latitude;
+	          tempData.lng = value.place.location.longitude;
+	          tempData.name = value.place.name;
+	          restructureArr.push(tempData);
+	        });
+	        return restructureArr;
+		},
+		compareLocation: function (target, resource){
+         	var compareNumber = 0.001;
+          	return (Math.abs(target.lat - resource.lat) <= compareNumber) && (Math.abs(target.lng - resource.lng) <= compareNumber);
+       	}
+	};s
+});
+
+GatheringApp.service('MapService', function (HelperFactory) {
 	that = this;
 
 	this.map = {
@@ -36,18 +56,39 @@ GatheringApp.service('MapService', function() {
 		return that.map;
 	};
 
-	this.addUsersIntoMarkers = function(user_tag_list) {
 
+	this.addUsersIntoMarkers = function(users) {
+		// var new_checkin_list = HelperFactory.getParsedCheckInData(origin_checkin_list);
+		angular.forEach(users, function(user, nc_idx) {
+			angular.forEach(user.checkin_list, function(checkin, f_idx) {
+				angular.forEach(that.map.markers, function(marker, m_idx) {
+					if(HelperFactory.compareLocation(marker, checkin)) {
+						marker.friends.push(user);
+						console.log('Y');
+					}
+					else {
+						console.log('N');
+					}
+				});
+			})
+
+		});
 	};
 
-	this.addMarkers = function (data_list) {
+	this.syncMarkers = function (data_list) {
+		that.map.markers = {};
 		angular.forEach(data_list, function(data, index) {
 			that.map.markers[index] = {
 				lat : parseFloat(data.lat),
 				lng : parseFloat(data.lng),
+				friends : [],
 				message : '<popup index="'+ index +'"></popup>'
 			};
 		});
+	};
+
+	this.getMarkerObj = function(index) {
+		return that.map.markers[index];
 	};
 });
 
@@ -57,29 +98,43 @@ GatheringApp.controller('MapCtrl', function (MapService) {
 	this.categories = [
 		{
 			id: 1,
-			name: 'Basketball'
+			name: 'gym'
 		},
 		{
 			id: 2,
-			name: 'run'
+			name: 'swimming'
 		},
 		{
 			id: 3,
-			name: 'cycling'
+			name: 'tennis'
 		},
 		{
 			id: 4,
-			name: 'gym'
+			name: 'yoga'
+		},
+		{
+			id: 5,
+			name: 'basketball'
+		},
+		{
+			id: 6,
+			name: 'baseball'
 		}
 	];
+
+	mcScope.updateMap = function (category_name) {
+		MapService.syncMarkers(window.GATHERING_DATA.categories[category_name]);
+		MapService.addUsersIntoMarkers(window.GATHERING_DATA.users);
+	};
+
 	(function init() {
 		mcScope.map = MapService.initMap();
-		mcScope.users = window.GATHERING_DATA.user1;
-		MapService.addMarkers(window.GATHERING_DATA.gym)
+
+
 	})();
 });
 
-GatheringApp.directive('popup', function() {
+GatheringApp.directive('popup', function (MapService) {
 	return {
 		restrict: "E",
 		replace: true,
@@ -87,7 +142,7 @@ GatheringApp.directive('popup', function() {
 			index: '='
 		},
 		link: function(scope, element, attrs) {
-			console.log(scope.index);
+			scope.marker = MapService.getMarkerObj(scope.index);
 		},
 		templateUrl: '/partials/popup.html'
 	}

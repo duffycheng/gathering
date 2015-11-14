@@ -10,6 +10,23 @@ header{
   font-size: 20px;
 }
 
+.popup-container {
+	max-height: 200px;
+	overflow-y: scroll;
+}
+
+.popup-container .friend-container {
+	width: 200px;
+	margin: 10px 0px;
+}
+
+.popup-container .friend-container img {
+	height: 50px;
+	object-fit: contain;
+	background-color: #eee;
+	width: 50%;
+}
+
 footer{
   text-align: center;
   padding: 5px;
