@@ -13,7 +13,15 @@
 	<script src="js/angular.min.js"></script>
 	<script src="js/angular-leaflet-directive.min.js"></script>
 	<script src="js/leaflet.js"></script>
+
 	<script src="js/main.js"></script>
+
+	<!-- data -->
+	<script>
+		window.GATHERING_DATA = {};
+	</script>
+	<script src="data/gym.js"></script>
+	<script src="data/user1.js"></script>
 
   </head>
   <body>
@@ -41,9 +49,10 @@
       </div>
 
       <div class="map">
-		<leaflet width="100%" height="500px"
+		<leaflet width="100%" height="700px"
 			center="mc.map.center"
 			defaults="mc.map.defaults"
+			markers="mc.map.markers"
 			>
 		</leaflet>
       </div>
