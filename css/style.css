@@ -1,11 +1,27 @@
-header{
-  /*padding: 0 10px;*/
+
+.navbar{
+  background-color: #295F96;
+  box-shadow: 0 1px  rgba(0,0,0,.2);
+}
+header h1{
   color: #fff;
+  margin: 20px 10px 20px;
+  text-shadow: 2px 2px 1px  rgba(0,0,0,.2);
 }
 .main-content{
   margin-top: 70px;
 }
-
+.login-content{
+  background: url(../images/exercise.jpg);
+  background-size: 100% auto;
+  height: 600px;
+}
+.login-content h2{
+  color: #4A4A4A;
+  text-align: right;
+  padding-right: 100px;
+  text-shadow: 1px 1px 0px rgba(0,0,0,.2);
+}
 .category-label {
   font-size: 20px;
 }
@@ -31,4 +47,5 @@ footer{
   text-align: center;
   padding: 5px;
   border-top: 1px solid #ccc;
+  /*margin-top: 20px;*/
 }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gathering with your friend</title>
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <div id="fb-root"></div>
+        <script type="text/javascript">
+            window.fbAsyncInit = function() {
+                FB.init({appId: '1660966177513615', status: true, cookie: true, xfbml: true});
+                //這裡要輸入你的appId 到 FB 開發者申請
+                /* All the events registered */
+                FB.Event.subscribe('auth.login', function(response) {
+                    // do something with response
+
+                    login();
+                });
+                FB.Event.subscribe('auth.logout', function(response) {
+                    // do something with response
+                    logout();
+                });
+
+                FB.getLoginStatus(function(response) {
+                    if (response.session) {
+                        // logged in and connected user, someone you know
+                        login();
+                    }
+                });
+            };
+            (function() {
+                //將FB的內容使用append方式加入
+                var e = document.createElement('script');
+                e.type = 'text/javascript';
+                e.src = document.location.protocol +
+                    '//connect.facebook.net/en_US/all.js';
+                e.async = true;
+                document.getElementById('fb-root').appendChild(e);
+            }());
+            function login(){
+
+                  window.location = 'index.html';
+
+
+            }
+    </script>
+    <header class="navbar navbar-fixed-top">
+      <h1>Where is your friends?</h1>
+    </header>
+    <div class=" main-content">
+      <div class="row login-content">
+        <div class="">
+          <h2>Let's Go Exercise Together!
+            <!-- <a href="index.html" class="btn btn-primary login">Login With Facebook</a> -->
+            <fb:login-button size="xlarge" autologoutlink="true" scope="user_about_me,user_friends,user_location,user_posts,user_photos,user_tagged_places"></fb:login-button>
+          </h2>
+
+        </div>
+
+      </div>
+      <div class="row">
+      </div>
+    </div>
+    <footer>
+      Gathering @ 2015
+    </footer>
+  </body>
+</html>
