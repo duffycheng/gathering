@@ -5,17 +5,11 @@ header{
 .main-content{
   margin-top: 70px;
 }
-.category-select{
-  padding: 20px;
+
+.category-label {
+  font-size: 20px;
 }
-.category-select h3{
-  margin: 0;
-  float:left;
-}
-.category-select select{
-  font-size: 24px;
-  margin-left: 10px;
-}
+
 footer{
   text-align: center;
   padding: 5px;

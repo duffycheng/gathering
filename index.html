@@ -8,10 +8,11 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/style.css">
-
-  <script src="js/leaflet.js"></script>
+  <link rel="stylesheet" href="css/leaflet.css">
+  	<script src="js/leaflet.js"></script>
 	<script src="js/angular.min.js"></script>
 	<script src="js/angular-leaflet-directive.min.js"></script>
+	<script src="js/leaflet.js"></script>
 	<script src="js/main.js"></script>
 
   </head>
@@ -19,22 +20,32 @@
     <header class="navbar navbar-inverse navbar-fixed-top">
       <h1>Where is your friend?</h1>
     </header>
-    <section class="container main-content">
+    <section class="container main-content" ng-app="GatheringApp" ng-controller="MapCtrl as mc">
       <h2>Place: Taipei City</h2>
-      <div class="category-select clear-fix">
-        <h3>Which exercise?</h3>
-        <select class="category" name="category">
-          <optgroup>
-          <option value='baseball'>Basketball</option>
-          <option value='run'>Running</option>
-          <option value='cycling'>Cycling</option>
-          <option value='gym'>Gym</option>
-        </optgroup>
-        </select>
+      <div class="row">
+      	<div class="col-md-3 category-label">
+      		Which exercise?
+      	</div>
+      	<div class="col-md-3">
+      		<select class="form-control"
+	        	ng-options="category.name for category in mc.categories track by category.id"
+	        	ng-model="mc.category"
+	        	>
+	        	<option value=""> - Select Category</option>
+	        </select>
+      	</div>
+
+      </div>
+      <div class="row">
+		<hr>
       </div>
 
       <div class="map">
-
+		<leaflet width="100%" height="500px"
+			center="mc.map.center"
+			defaults="mc.map.defaults"
+			>
+		</leaflet>
       </div>
     </section>
     <footer>
