@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Compare</title>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+      var GATHERING_DATA={};
+    </script>
+
+    <script type="text/javascript" src="data/gym.js"></script>
+    <script type="text/javascript" src="data/user1.js"></script>
+    <script type="text/javascript">
+
+      console.log(restructure(window.GATHERING_DATA.user1));
+
+      var target= {
+        lat: 25.045259,
+        lng: 121.5064979,
+        name: "世界健身俱樂部"
+      },
+      resource = {
+        lat: 25.04522589999999,
+        lng: 121.5064979,
+        name: "世界健身俱樂部"
+      };
+
+      console.log(compare(target, resource));
+
+      //重整
+      function restructure(user_data){
+        var dataArr = user_data.data, restructureArr=[];
+        dataArr.forEach(function(value){
+          var tempData = {};
+          tempData.lat = value.place.location.latitude;
+          tempData.lng = value.place.location.longitude;
+          tempData.name = value.place.name;
+          restructureArr.push(tempData);
+        });
+        return restructureArr;
+      }
+
+       function compare(target, resource){
+         var compareNumber = 0.001;
+          return (Math.abs(target.lat - resource.lat) <= compareNumber) && (Math.abs(target.lng - resource.lng) <= compareNumber);
+       }
+
+
+
+    </script>
+
+  </body>
+</html>
