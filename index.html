@@ -4,17 +4,38 @@
     <meta charset="utf-8">
     <title>Gathering with your friend</title>
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
-<link rel="stylesheet" href="./css/style.css">
+  <script src="js/leaflet.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-leaflet-directive.min.js"></script>
+	<script src="js/main.js"></script>
+
+  </head>
   <body>
-    <header>
+    <header class="navbar navbar-inverse navbar-fixed-top">
       <h1>Where is your friend?</h1>
     </header>
-    <section>
-      
+    <section class="container main-content">
+      <h2>Place: Taipei City</h2>
+      <div class="category-select clear-fix">
+        <h3>Which exercise?</h3>
+        <select class="category" name="category">
+          <optgroup>
+          <option value='baseball'>Basketball</option>
+          <option value='run'>Running</option>
+          <option value='cycling'>Cycling</option>
+          <option value='gym'>Gym</option>
+        </optgroup>
+        </select>
+      </div>
+
+      <div class="map">
+
+      </div>
     </section>
     <footer>
       Gathering @ 2015
