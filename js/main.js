@@ -69,11 +69,11 @@ GatheringApp.service('MapService', function (HelperFactory) {
 							iconSize: [25, 41],
 							iconAnchor: [12.5, 41],
 							popupAnchor:  [0, -41]
-						},
-						console.log('Y');
+						};
+						// console.log('Y');
 					}
 					else {
-						console.log('N');
+						// console.log('N');
 					}
 				});
 			})
@@ -85,6 +85,7 @@ GatheringApp.service('MapService', function (HelperFactory) {
 		that.map.markers = {};
 		angular.forEach(data_list, function(data, index) {
 			that.map.markers[index] = {
+				title : data.name,
 				lat : parseFloat(data.lat),
 				lng : parseFloat(data.lng),
 				icon : {
